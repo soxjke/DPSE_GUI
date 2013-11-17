@@ -1,5 +1,5 @@
 // 
-// Attributes.cs
+// Constants.cs
 //  
 // Author:
 //       Petro Korienev <korenevpetro@gmail.com>
@@ -24,20 +24,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Reflection;
 
 namespace Model
 {
-	public abstract class Attributes
+	public static class Constants
 	{
-		private Dictionary <String, Object> _attributes;
-		
-		public Attributes()
-		{
-			_attributes = new Dictionary<string, object>();
-			_attributes[Constants.AttributesType] = this.GetType().Name;
-		}
+		// Attributes constants
+	   	public static string AttributesType { get { return "AttributesType"; } }
+		public static string SomeConstant { get { return "SomeConstant"; } }
 	}
 }
+

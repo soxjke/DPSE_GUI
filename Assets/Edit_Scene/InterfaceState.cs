@@ -1,5 +1,5 @@
 // 
-// Constants.cs
+// InterfaceState.cs
 //  
 // Author:
 //       Petro Korienev <korenevpetro@gmail.com>
@@ -25,13 +25,16 @@
 // THE SOFTWARE.
 using System;
 
-namespace AssemblyCSharp
+namespace EditScene
 {
-	public static class Constants
+	public enum InterfaceState
 	{
-		// Attributes constants
-	   	public static string AttributesType { get { return "AttributesType"; } }
-		public static string SomeConstant { get { return "SomeConstant"; } }
+		MoveCamera,
+		EditNode,
+		EditNet,
+		AddNode,
+		AddNet,
+		Animating
 	}
 }
 
