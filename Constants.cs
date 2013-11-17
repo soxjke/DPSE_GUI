@@ -2,9 +2,9 @@
 // Constants.cs
 //  
 // Author:
-//       petrokorienev <${AuthorEmail}>
+//       Petro Korienev <korenevpetro@gmail.com>
 // 
-// Copyright (c) 2013 petrokorienev
+// Copyright (c) 2013 Petro Korienev
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,8 +27,11 @@ using System;
 
 namespace AssemblyCSharp
 {
-	public enum Constants
+	public static class Constants
 	{
+		// Attributes constants
+	   	public static string AttributesType { get { return "AttributesType"; } }
+		public static string SomeConstant { get { return "SomeConstant"; } }
 	}
 }
 

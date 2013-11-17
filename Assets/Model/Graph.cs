@@ -1,5 +1,5 @@
 // 
-// Attributes.cs
+// Graph.cs
 //  
 // Author:
 //       Petro Korienev <korenevpetro@gmail.com>
@@ -23,22 +23,34 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
-using AssemblyCSharp;
 
 namespace Model
 {
-	public abstract class Attributes
+	public class Graph
 	{
-		private Dictionary <String, Object> _attributes;
+		private List <Node> _nodes;
+		private List <Net>  _nets;
 		
-		public Attributes()
+		public Graph ()
 		{
-			_attributes = new Dictionary<string, object>();
-			_attributes[Constants.AttributesType] = this.GetType().Name;
+			_nodes 	= new List <Node>();
+			_nets 	= new List <Net>();
 		}
+		
+		public void addNode(Vector3 location)
+		{
+			_nodes.Add(new Node(location));
+		}
+		
+		public void addNet(Node start, Node end)
+		{
+			_nets.Add(new Net(start, end));
+		}
+			
 	}
 }
+

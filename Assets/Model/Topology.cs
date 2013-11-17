@@ -24,11 +24,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
+using UnityEngine;
 
-namespace AssemblyCSharp
+namespace Model
 {
 	public interface Topology
 	{
+		Vector3 location();
+		void setLocation(Vector3 location);
 	}
 }
 
