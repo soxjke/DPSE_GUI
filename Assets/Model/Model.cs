@@ -1,5 +1,5 @@
-// 
-// Graph.cs
+﻿// 
+// Model.cs
 //  
 // Author:
 //       Petro Korienev <korenevpetro@gmail.com>
@@ -24,59 +24,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using UnityEngine;
-using System;
 using System.Collections;
-using System.Collections.Generic;
 
 namespace Model
 {
-	public class Graph
-	{
-		private List <Node> _nodes;
-		private List <Net>  _nets;
-		
-		public Graph ()
-		{
-			_nodes 	= new List <Node>();
-			_nets 	= new List <Net>();
-		}
-		
-		public void addNode(Vector3 location)
-		{
-			_nodes.Add(new Node(location));
-		}
-		
-		public void addNet(Node start, Node end)
-		{
-			Net net = new Net(start, end);
-			start.connectNet(net);
-			end.connectNet(net);
-			_nets.Add(net);
-		}
-		
-		public void removeNode(Node node)
-		{
-			foreach(Net net in node.Nets)
-			{
-				_nets.Remove(net);
-				foreach(Node connectedNode in net.Nodes)
-				{
-					if (!connectedNode.Equals(node))
-					{
-						connectedNode.disconnectNet(net);
-					}
-				}	
-			}
-			_nodes.Remove(node);
-		}
-		
-		public void removeNet(Net net)
-		{
-			foreach(Node connectedNode in net.Nodes)
-			{
-				connectedNode.disconnectNet(net);
-			}				
-			_nets.Remove(net);			
-		}
-	}
+	
 }

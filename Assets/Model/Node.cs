@@ -24,6 +24,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Model
@@ -32,14 +34,36 @@ namespace Model
 	{
 		private Vector3 _location;
 		
+		private readonly List<Net> _nets;
+		
+		public IList<Net> Nets
+		{
+		    get
+		    {
+		        return _nets.AsReadOnly();
+		    }
+		}		
+		
 		public Node ()
 		{
+			_nets	  = new List<Net>();
 			_location = new Vector3(0, 0, 0);
 		}
 		
 		public Node (Vector3 location)
 		{
+			_nets	  = new List<Net>();			
 			_location = location;
+		}
+		
+		public void connectNet(Net net)
+		{
+			_nets.Add(net);
+		}
+		
+		public void disconnectNet(Net net)
+		{
+			_nets.Remove(net);
 		}
 		
 		public Vector3 location()
