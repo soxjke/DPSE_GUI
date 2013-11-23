@@ -33,6 +33,8 @@ namespace Model
 {
 	public class Net
 	{
+		public String NetId;
+		
 		private readonly List<Node> _nodes;
 		
 		public IList<Node> Nodes

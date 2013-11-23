@@ -32,6 +32,8 @@ namespace Model
 {
 	public class Node : Topology
 	{
+		public String NodeId;
+		
 		private Vector3 _location;
 		
 		private readonly List<Net> _nets;
