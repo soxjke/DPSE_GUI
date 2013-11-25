@@ -30,26 +30,37 @@ public class Cage : MonoBehaviour {
 	
 	private static Material lineMaterial;
 	
-	private const int lineCount = 100;
+	private const int lineCount = 9;
 	
 	private const float lineDistance = 5.0f;
 	
-	private static Color lineColor;
+	private const float delta = 1.0f;
 	
-	private static Color invisibleColor;
+	private static Color lineColor = new Color(1.0f,1.0f,1.0f,0.5f);
+	
+	private static Color invisibleColor = new Color(0.0f,0.0f,0.0f,0.0f);
+	
+	void OnGUI ()
+	{
+		
+	}
 	
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 	
 	}
 	
 	// Update is called once per frame
-	void Update () {	
+	void Update () 
+	{	
 		
 	}
 	
-	static void CreateLineMaterial() {
-		if( !lineMaterial ) {
+	static void CreateLineMaterial() 
+	{
+		if( !lineMaterial ) 
+		{
 			lineMaterial = new Material( "Shader \"Lines/Colored Blended\" {" +
 				"SubShader { Pass { " +
 				"    Blend SrcAlpha OneMinusSrcAlpha " +
@@ -62,53 +73,32 @@ public class Cage : MonoBehaviour {
 		}
 	}
 	
-	static void CreateColors() {
-		if (!lineColor || !invisibleColor) {
-			lineColor = new Color(1.0f,1.0f,1.0f,0.5f);
-			invisibleColor = new Color(0.0f,0.0f,0.0f,0.0f);
-		}
-	}
-	
 	void OnPostRender() 
 	{
 		CreateLineMaterial();		
-		CreateColors();
 		
 		GL.PushMatrix();
 		
-		lineMaterial.SetPass( 0 );
-/*		
-		GL.Begin( GL.LINES );
-		GL.Color( new Color(1.0f,1.0f,1.0f,0.5f) );
-		GL.Vertex3( 0, 0, 0 );
-		GL.Vertex3( 1, 0, 0 );
-		GL.Vertex3( 0, 1, 0 );
-		GL.Vertex3( 1, 1, 0 );
-		GL.Color( new Color(0.0f,0.0f,0.0f,0.5f) );
-		GL.Vertex3( 0, 0, 0 );
-		GL.Vertex3( 0, 1, 0 );
-		GL.Vertex3( 1, 0, 0 );
-		GL.Vertex3( 1, 1, 0 );
-		GL.End();
-*/
+		lineMaterial.SetPass(0);
+		
+		float startPos 	= - lineDistance * (lineCount / 2);
+		float endPos	= lineDistance * (lineCount / 2);
 		
 		for (int i = 0; i < lineCount; i++)
-		
-		GL.Begin( GL.LINES );
-		GL.Color( new Color(1.0f,1.0f,1.0f,0.5f) );
-		GL.Vertex3( 0, 0, 0 );
-		GL.Vertex3( 1, 0, 0 );
-		GL.Vertex3( 0, 1, 0 );
-		GL.Vertex3( 1, 1, 0 );
-		GL.Color( new Color(0.0f,0.0f,0.0f,0.5f) );
-		GL.Vertex3( 0, 0, 0 );
-		GL.Vertex3( 0, 1, 0 );
-		GL.Vertex3( 1, 0, 0 );
-		GL.Vertex3( 1, 1, 0 );
-		GL.End();
-		
+		{
+			GL.Begin(GL.LINES);						
+			GL.Color(lineColor);
+			GL.Vertex3(startPos + i * lineDistance, 0, startPos - lineDistance);
+			GL.Vertex3(startPos + i * lineDistance, 0, endPos + lineDistance);
+			GL.End();
+			
+			GL.Begin(GL.LINES);						
+			GL.Color(lineColor);
+			GL.Vertex3(startPos - lineDistance, 0, startPos + i * lineDistance);
+			GL.Vertex3(endPos + lineDistance, 0, startPos + i * lineDistance);
+			GL.End();				
+		}		
 		
 		GL.PopMatrix();
-//		Debug.DrawLine(new Vector3(0, 0, 10), new Vector3(10, 10, 10), Color.red);
 	}
 }
