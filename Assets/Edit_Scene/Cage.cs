@@ -36,9 +36,7 @@ public class Cage : MonoBehaviour {
 	
 	private const float delta = 1.0f;
 	
-	private static Color lineColor = new Color(1.0f,1.0f,1.0f,0.5f);
-	
-	private static Color invisibleColor = new Color(0.0f,0.0f,0.0f,0.0f);
+	private static Color lineColor = new Color(0.8f,0.1f,0.1f,0.5f);
 	
 	void OnGUI ()
 	{
@@ -86,19 +84,43 @@ public class Cage : MonoBehaviour {
 		
 		for (int i = 0; i < lineCount; i++)
 		{
-			GL.Begin(GL.LINES);						
-			GL.Color(lineColor);
-			GL.Vertex3(startPos + i * lineDistance, 0, startPos - lineDistance);
-			GL.Vertex3(startPos + i * lineDistance, 0, endPos + lineDistance);
-			GL.End();
-			
-			GL.Begin(GL.LINES);						
-			GL.Color(lineColor);
-			GL.Vertex3(startPos - lineDistance, 0, startPos + i * lineDistance);
-			GL.Vertex3(endPos + lineDistance, 0, startPos + i * lineDistance);
-			GL.End();				
-		}		
+/*			
+			for (int j = 0; j < lineCount; j++)
+			{
+*/			
+				GL.Begin(GL.LINES);						
+				GL.Color(lineColor);
+				GL.Vertex3(startPos + i * lineDistance, 0/*startPos + j * lineDistance*/, startPos - lineDistance);
+				GL.Vertex3(startPos + i * lineDistance, 0/*startPos + j * lineDistance*/, endPos + lineDistance);
+				GL.End();
+				
+				GL.Begin(GL.LINES);						
+				GL.Color(lineColor);
+				GL.Vertex3(startPos - lineDistance, 0/*startPos + j * lineDistance*/, startPos + i * lineDistance);
+				GL.Vertex3(endPos + lineDistance, 0/*startPos + j * lineDistance*/, startPos + i * lineDistance);
+				GL.End();			
+/*			
+			}
+*/		
+/*			
+			for (int k = 0; k < lineCount; k++)
+			{
+				GL.Begin(GL.LINES);						
+				GL.Color(vertLineColor);
+				GL.Vertex3(startPos + k * lineDistance, startPos, startPos + i * lineDistance);
+				GL.Vertex3(startPos + k * lineDistance, endPos, startPos + i * lineDistance);
+				GL.End();							
+			}
+*/			
+		}	
 		
+		GL.Begin(GL.LINES);						
+		GL.Color(lineColor);
+		GL.Vertex3(0, startPos, 0);
+		GL.Vertex3(0, endPos, 0);
+		GL.End();							
+
+			
 		GL.PopMatrix();
 	}
 }
