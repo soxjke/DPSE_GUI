@@ -1,6 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Model/Net.cs">
+    <Files>
+      <File FileName="../../../Downloads/fastjson-9e2c9cfdab20bffa2dd9a7ed0f0a362c9b4371fc/fastJSON/JsonParser.cs" Line="1" Column="1" />
+      <File FileName="../../../Downloads/fastjson-9e2c9cfdab20bffa2dd9a7ed0f0a362c9b4371fc/fastJSON/Reflection.cs" Line="1" Column="1" />
+      <File FileName="../../../Downloads/fastjson-9e2c9cfdab20bffa2dd9a7ed0f0a362c9b4371fc/fastJSON/SafeDictionary.cs" Line="11" Column="44" />
+      <File FileName="Assets/Model/Net.cs" Line="9" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

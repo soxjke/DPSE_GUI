@@ -28,7 +28,15 @@ using System.Collections;
 
 public class Cage : MonoBehaviour {
 	
-	public Material mat;
+	private static Material lineMaterial;
+	
+	private const int lineCount = 100;
+	
+	private const float lineDistance = 5.0f;
+	
+	private static Color lineColor;
+	
+	private static Color invisibleColor;
 	
 	// Use this for initialization
 	void Start () {
@@ -40,17 +48,67 @@ public class Cage : MonoBehaviour {
 		
 	}
 	
+	static void CreateLineMaterial() {
+		if( !lineMaterial ) {
+			lineMaterial = new Material( "Shader \"Lines/Colored Blended\" {" +
+				"SubShader { Pass { " +
+				"    Blend SrcAlpha OneMinusSrcAlpha " +
+				"    ZWrite Off Cull Off Fog { Mode Off } " +
+				"    BindChannels {" +
+				"      Bind \"vertex\", vertex Bind \"color\", color }" +
+				"} } }" );
+			lineMaterial.hideFlags = HideFlags.HideAndDontSave;
+			lineMaterial.shader.hideFlags = HideFlags.HideAndDontSave;
+		}
+	}
+	
+	static void CreateColors() {
+		if (!lineColor || !invisibleColor) {
+			lineColor = new Color(1.0f,1.0f,1.0f,0.5f);
+			invisibleColor = new Color(0.0f,0.0f,0.0f,0.0f);
+		}
+	}
+	
 	void OnPostRender() 
 	{
+		CreateLineMaterial();		
+		CreateColors();
+		
 		GL.PushMatrix();
-		mat.SetPass(0);
-		GL.LoadIdentity();		
-		GL.Begin(GL.LINES);
-		GL.Color(Color.red);
-		GL.Vertex(new Vector3(0, 0, 10));
-		GL.Vertex(new Vector3(10, 10, 10));
+		
+		lineMaterial.SetPass( 0 );
+/*		
+		GL.Begin( GL.LINES );
+		GL.Color( new Color(1.0f,1.0f,1.0f,0.5f) );
+		GL.Vertex3( 0, 0, 0 );
+		GL.Vertex3( 1, 0, 0 );
+		GL.Vertex3( 0, 1, 0 );
+		GL.Vertex3( 1, 1, 0 );
+		GL.Color( new Color(0.0f,0.0f,0.0f,0.5f) );
+		GL.Vertex3( 0, 0, 0 );
+		GL.Vertex3( 0, 1, 0 );
+		GL.Vertex3( 1, 0, 0 );
+		GL.Vertex3( 1, 1, 0 );
 		GL.End();
+*/
+		
+		for (int i = 0; i < lineCount; i++)
+		
+		GL.Begin( GL.LINES );
+		GL.Color( new Color(1.0f,1.0f,1.0f,0.5f) );
+		GL.Vertex3( 0, 0, 0 );
+		GL.Vertex3( 1, 0, 0 );
+		GL.Vertex3( 0, 1, 0 );
+		GL.Vertex3( 1, 1, 0 );
+		GL.Color( new Color(0.0f,0.0f,0.0f,0.5f) );
+		GL.Vertex3( 0, 0, 0 );
+		GL.Vertex3( 0, 1, 0 );
+		GL.Vertex3( 1, 0, 0 );
+		GL.Vertex3( 1, 1, 0 );
+		GL.End();
+		
+		
 		GL.PopMatrix();
-		Debug.DrawLine(new Vector3(0, 0, 10), new Vector3(10, 10, 10), Color.red);
+//		Debug.DrawLine(new Vector3(0, 0, 10), new Vector3(10, 10, 10), Color.red);
 	}
 }
